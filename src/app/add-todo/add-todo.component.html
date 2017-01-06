@@ -1,0 +1,11 @@
+<button
+  [hidden]="isInputVisible"
+  (click)="showInput(in)">
+  +
+</button>
+<input
+  #in
+  type="text"
+  (keyup.enter)="addTodo(in.value); in.value = ''"
+  (blur)="isInputVisible = false"
+  [hidden]="!isInputVisible">

@@ -1,0 +1,21 @@
+<div class="todo">
+  <span [innerHtml]="todo.data"></span>
+  <input type="checkbox"
+        [hidden]="isRoot || todo.items.length"
+        [checked]="!!todo.done"
+        (change)="checkedChange($event.target.checked)">
+  <span [innerHtml]="todo.done | percent"
+        [hidden]="!todo.items.length"></span>
+  <app-add-todo (newTodo)="onAddTodo($event)"></app-add-todo>
+  <button (click)="deleteMe()"
+          [hidden]="isRoot">
+    X
+  </button>
+  <ul>
+    <li *ngFor="let item of todo.items">
+      <app-todo [todo]="item"
+                (doneChanged)="updateDone()"
+                (deleteTodo)="onDeleteTodo($event)"></app-todo>
+    </li>
+  </ul>
+</div>
